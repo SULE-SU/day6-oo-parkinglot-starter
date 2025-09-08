@@ -14,6 +14,16 @@ public class ParkingLotTest {
         Ticket ticketResult = parkingLot.park(car);
         assertEquals(ticket,ticketResult);
     }
+    //Case 2-Given a parking lot with a parked car,and a parking ticket,When fetch the car,Then return the parked car.
+    @Test
+    public void should_return_the_parked_car_when_Given_a_parking_lot_with_a_car_and_a_parking_ticket() {
+        ParkingLot parkingLot = new ParkingLot();
+        Car car = new Car("1");
+
+        Ticket ticketResult = parkingLot.park(car);
+        Car car2 =parkingLot.fetch(ticketResult);
+        assertEquals(car,car2);
+    }
 
 
 }
