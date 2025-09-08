@@ -27,4 +27,16 @@ public class StandardParkingBoyTest {
         Ticket ticketResult = standardParkingBoy.park(car);
         assertNotNull(ticketResult);
     }
+
+    //Case 2-Given a standard parking boy with a parked car,and a parking ticket,When fetch the car,Then return the parked car.
+    @Test
+    public void should_return_the_parked_car_when_Given_a_standard_parking_boy_with_a_car_and_a_parking_ticket() {
+        ParkingLot parkingLot = new ParkingLot();
+        StandardParkingBoy standardParkingBoy = new StandardParkingBoy(parkingLot);
+        Car car = new Car("1");
+
+        Ticket ticketResult = standardParkingBoy.park(car);
+        Car car2 = standardParkingBoy.fetch(ticketResult);
+        assertEquals(car, car2);
+    }
 }
