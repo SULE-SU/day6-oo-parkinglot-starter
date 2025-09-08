@@ -55,7 +55,26 @@ public class StandardParkingBoyMultipleLotsTest {
         assertEquals(secondParkingLot, ticket2.getParkingLot());
     }
     //Case 3 - Given a standard parking boy managing two parking lots with both lots full, When park a car, Then return nothing
-    //Case 4 - Given a standard parking boy managing two parking lots with cars parked in both lots, When fetch cars with tickets, Then return the right car from the correct parking lot
+    @Test
+    public void should_return_nothing_when_all_parking_lots_are_full() {
+        ParkingLot firstParkingLot = new ParkingLot(1);
+        ParkingLot secondParkingLot = new ParkingLot(1);
+        List<ParkingLot> parkingLots = Arrays.asList(firstParkingLot, secondParkingLot);
+        StandardParkingBoy standardParkingBoy = new StandardParkingBoy(parkingLots);
+
+        Car car1 = new Car("1");
+        Car car2 = new Car("2");
+        Car car3 = new Car("3");
+
+        Ticket ticket1 = standardParkingBoy.park(car1);
+        Ticket ticket2 = standardParkingBoy.park(car2);
+        Ticket ticket3 = standardParkingBoy.park(car3);
+
+        assertNotNull(ticket1);
+        assertNotNull(ticket2);
+        assertNull(ticket3);
+    }
+
 
 
 }
