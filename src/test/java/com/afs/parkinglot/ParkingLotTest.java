@@ -1,10 +1,21 @@
 package com.afs.parkinglot;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ParkingLotTest {
+
+    private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+
+    @BeforeEach
+    void setUp(){
+        System.setOut(new PrintStream(outContent));
+    }
 
     //Case 1-Given a parking lot,and a car,When park the car,Then return a parking ticket.
     @Test
@@ -69,6 +80,41 @@ public class ParkingLotTest {
         Car car2 = new Car("2");
         Ticket ticketResult2 = parkingLot.park(car2);
         assertNull(ticketResult2);
+    }
+
+    //Case 7 - Given a parking lot, and an unrecognized ticket, When fetch the car, Then return nothing with error message "Unrecognized parking ticket.”
+    @Test
+    public void should_return_nothing_with_error_message_when_Given_a_parking_lot_and_an_unrecognized_ticket() {
+        ParkingLot parkingLot = new ParkingLot();
+
+        Ticket ticket = new Ticket(new Car("5"),19,parkingLot);
+
+        Car car = parkingLot.fetch(ticket);
+        assertNull(car);
+        assertTrue(outContent.toString().contains("Unrecognized parking ticket"));
+    }
+    //Case 8 - Given a parking lot, and a used ticket, When fetch the car, Then return nothing with error message "Unrecognized parking ticket."
+    @Test
+    public void should_return_nothing_with_error_message_when_Given_a_parking_lot_and_a_used_parking_tickets() {
+        ParkingLot parkingLot = new ParkingLot();
+        Car car1 = new Car("1");
+        Ticket ticketResult1 = parkingLot.park(car1);
+        Car car1Result = parkingLot.fetch(ticketResult1);
+
+        Car car2Result = parkingLot.fetch(ticketResult1);
+        assertNull(car2Result);
+        assertTrue(outContent.toString().contains("Unrecognized parking ticket"));
+    }
+    //Case 9 - Given a parking lot without any position, and a car, When park the car, Thenreturn nothing with error message "No available position."
+    @Test
+    public void should_return_nothing_with_error_message_when_Given_a_parking_lot_without_any_position() {
+        ParkingLot parkingLot = new ParkingLot(1);
+        Car car1 = new Car("1");
+        Ticket ticketResult1 = parkingLot.park(car1);
+        Car car2 = new Car("2");
+        Ticket ticketResult2 = parkingLot.park(car2);
+        assertNull(ticketResult2);
+        assertTrue(outContent.toString().contains("No available position"));
     }
 
 }
