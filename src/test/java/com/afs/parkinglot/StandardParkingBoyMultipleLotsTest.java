@@ -35,6 +35,25 @@ public class StandardParkingBoyMultipleLotsTest {
     }
 
     //Case 2 - Given a standard parking boy managing two parking lots with first lot full, When park a car, Then park to the second parking lot
+    @Test
+    public void should_park_to_second_parking_lot_when_first_is_full() {
+        ParkingLot firstParkingLot = new ParkingLot(1);
+        ParkingLot secondParkingLot = new ParkingLot(1);
+        List<ParkingLot> parkingLots = Arrays.asList(firstParkingLot, secondParkingLot);
+        StandardParkingBoy standardParkingBoy = new StandardParkingBoy(parkingLots);
+
+        Car car1 = new Car("1");
+        Car car2 = new Car("2");
+
+
+        Ticket ticket1 = standardParkingBoy.park(car1);
+        Ticket ticket2 = standardParkingBoy.park(car2);
+
+        assertNotNull(ticket1);
+        assertNotNull(ticket2);
+        assertEquals(firstParkingLot, ticket1.getParkingLot());
+        assertEquals(secondParkingLot, ticket2.getParkingLot());
+    }
     //Case 3 - Given a standard parking boy managing two parking lots with both lots full, When park a car, Then return nothing
     //Case 4 - Given a standard parking boy managing two parking lots with cars parked in both lots, When fetch cars with tickets, Then return the right car from the correct parking lot
 
