@@ -48,6 +48,17 @@ public class ParkingLotTest {
         Car car = parkingLot.fetch(ticket);
         assertNull(car);
     }
+    //Case 5-Given a parking lot,and a used parking ticket,When fetch the car,Then return nothing.
+    @Test
+    public void should_return_nothing_when_Given_a_parking_lot_and_a_used_parking_tickets() {
+        ParkingLot parkingLot = new ParkingLot();
+        Car car1 = new Car("1");
+        Ticket ticketResult1 = parkingLot.park(car1);
+        Car car1Result = parkingLot.fetch(ticketResult1);
+
+        Car car2Result = parkingLot.fetch(ticketResult1);
+        assertNull(car2Result);
+    }
 
 
 }
