@@ -93,6 +93,20 @@ public class StandardParkingBoyTest {
         assertNull(ticketResult2);
     }
 
+    //Case 7 - Given a standard parking boy, and an unrecognized ticket, When fetch the car, Then return nothing with error message "Unrecognized parking ticket.”
+    @Test
+    public void should_return_nothing_with_error_message_when_Given_a_standard_parking_boy_and_an_unrecognized_ticket() {
+        ParkingLot parkingLot = new ParkingLot();
+        StandardParkingBoy standardParkingBoy = new StandardParkingBoy(parkingLot);
+
+        Ticket ticket = new Ticket(new Car("5"), 19, parkingLot);
+
+        Car car = standardParkingBoy.fetch(ticket);
+        assertNull(car);
+        assertTrue(outContent.toString().contains("Unrecognized parking ticket"));
+    }
+
+
 
 
 }
