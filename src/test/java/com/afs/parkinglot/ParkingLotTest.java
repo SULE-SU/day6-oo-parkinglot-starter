@@ -38,5 +38,16 @@ public class ParkingLotTest {
         assertEquals(car1,car1Result);
         assertEquals(car2,car2Result);
     }
+    //Case 4-Given a parking lot,and a wrong parking ticket,When fetch the car,Then return nothing.
+    @Test
+    public void should_return_nothing_when_Given_a_parking_lot_and_a_wrong_parking_tickets() {
+        ParkingLot parkingLot = new ParkingLot();
+
+        Ticket ticket = new Ticket(new Car("3"),10,parkingLot);
+
+        Car car = parkingLot.fetch(ticket);
+        assertNull(car);
+    }
+
 
 }
