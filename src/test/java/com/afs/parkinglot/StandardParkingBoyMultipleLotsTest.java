@@ -77,7 +77,6 @@ public class StandardParkingBoyMultipleLotsTest {
     //Case 4 - Given a standard parking boy managing two parking lots with cars parked in both lots, When fetch cars with tickets, Then return the right car from the correct parking lot
    @Test
     public void should_return_the_right_car_from_correct_parking_lot_when_fetch_with_tickets() {
-        // Given
         ParkingLot firstParkingLot = new ParkingLot(1);
         ParkingLot secondParkingLot = new ParkingLot(1);
         List<ParkingLot> parkingLots = Arrays.asList(firstParkingLot, secondParkingLot);
@@ -86,15 +85,12 @@ public class StandardParkingBoyMultipleLotsTest {
         Car car1 = new Car("1");
         Car car2 = new Car("2");
 
-        // When - 停车
         Ticket ticket1 = standardParkingBoy.park(car1);
         Ticket ticket2 = standardParkingBoy.park(car2);
 
-        // When - 取车
         Car fetchedCar1 = standardParkingBoy.fetch(ticket1);
         Car fetchedCar2 = standardParkingBoy.fetch(ticket2);
 
-        // Then
         assertEquals(car1, fetchedCar1);
         assertEquals(car2, fetchedCar2);
         assertEquals(firstParkingLot, ticket1.getParkingLot());
