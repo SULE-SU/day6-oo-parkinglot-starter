@@ -29,5 +29,7 @@ public class ParkingLot {
                 .orElse(null);
     }
 
-
+    public Car fetch(Ticket ticket) {
+        return ticketCars.remove(ticket);
+    }
 }
