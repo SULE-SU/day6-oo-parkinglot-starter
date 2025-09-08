@@ -17,4 +17,17 @@ public class ParkingLot {
         this.capacity = capacity;
     }
 
+    public Ticket park(Car car) {
+        return IntStream.rangeClosed(1, capacity).boxed()
+                .filter(position -> ticketCars.keySet().stream().noneMatch(ticket -> ticket.getPosition().equals(position)))
+                .findFirst()
+                .map(position -> {
+                    Ticket ticket = new Ticket(car, position, this);
+                    ticketCars.put(ticket, car);
+                    return ticket;
+                })
+                .orElse(null);
+    }
+
+
 }
