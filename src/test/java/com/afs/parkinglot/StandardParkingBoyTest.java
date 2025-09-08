@@ -56,5 +56,18 @@ public class StandardParkingBoyTest {
         assertEquals(car2, car2Result);
     }
 
+    //Case 4-Given a standard parking boy,and a wrong parking ticket,When fetch the car,Then return nothing.
+    @Test
+    public void should_return_nothing_when_Given_a_standard_parking_boy_and_a_wrong_parking_tickets() {
+        ParkingLot parkingLot = new ParkingLot();
+        StandardParkingBoy standardParkingBoy = new StandardParkingBoy(parkingLot);
+
+        Ticket ticket = new Ticket(new Car("3"), 10, parkingLot);
+
+        Car car = standardParkingBoy.fetch(ticket);
+        assertNull(car);
+    }
+
+
 
 }
