@@ -31,4 +31,8 @@ public class Ticket {
     public int hashCode() {
         return java.util.Objects.hash(position, parkingLot);
     }
+
+    public ParkingLot getParkingLot() {
+        return parkingLot;
+    }
 }
