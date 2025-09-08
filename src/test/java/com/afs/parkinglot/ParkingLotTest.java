@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ParkingLotTest {
+
     //Case 1-Given a parking lot,and a car,When park the car,Then return a parking ticket.
     @Test
     public void should_return_a_parking_ticket_when_Given_a_parking_lot_and_a_car() {
@@ -59,6 +60,15 @@ public class ParkingLotTest {
         Car car2Result = parkingLot.fetch(ticketResult1);
         assertNull(car2Result);
     }
-
+    //Case 6-Given a parking lot without any position,and a car,When park the car,Then return nothing
+    @Test
+    public void should_return_nothing_when_Given_a_parking_lot_without_any_position() {
+        ParkingLot parkingLot = new ParkingLot(1);
+        Car car1 = new Car("1");
+        Ticket ticketResult1 = parkingLot.park(car1);
+        Car car2 = new Car("2");
+        Ticket ticketResult2 = parkingLot.park(car2);
+        assertNull(ticketResult2);
+    }
 
 }
