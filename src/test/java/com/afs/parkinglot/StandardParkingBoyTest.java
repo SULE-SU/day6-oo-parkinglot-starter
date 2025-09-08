@@ -81,6 +81,18 @@ public class StandardParkingBoyTest {
         assertNull(car2Result);
     }
 
+    //Case 6-Given a standard parking boy without any position,and a car,When park the car,Then return nothing
+    @Test
+    public void should_return_nothing_when_Given_a_standard_parking_boy_without_any_position() {
+        ParkingLot parkingLot = new ParkingLot(1);
+        StandardParkingBoy standardParkingBoy = new StandardParkingBoy(parkingLot);
+        Car car1 = new Car("1");
+        Ticket ticketResult1 = standardParkingBoy.park(car1);
+        Car car2 = new Car("2");
+        Ticket ticketResult2 = standardParkingBoy.park(car2);
+        assertNull(ticketResult2);
+    }
+
 
 
 }
