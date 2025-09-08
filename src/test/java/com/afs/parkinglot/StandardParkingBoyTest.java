@@ -120,6 +120,19 @@ public class StandardParkingBoyTest {
         assertTrue(outContent.toString().contains("Unrecognized parking ticket"));
     }
 
+    //Case 9 - Given a standard parking boy without any position, and a car, When park the car, Then return nothing with error message "No available position."
+    @Test
+    public void should_return_nothing_with_error_message_when_Given_a_standard_parking_boy_without_any_position() {
+        ParkingLot parkingLot = new ParkingLot(1);
+        StandardParkingBoy standardParkingBoy = new StandardParkingBoy(parkingLot);
+        Car car1 = new Car("1");
+        Ticket ticketResult1 = standardParkingBoy.park(car1);
+        Car car2 = new Car("2");
+        Ticket ticketResult2 = standardParkingBoy.park(car2);
+        assertNull(ticketResult2);
+        assertTrue(outContent.toString().contains("No available position"));
+    }
+
 
 
 
