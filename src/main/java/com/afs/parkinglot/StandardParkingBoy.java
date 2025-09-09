@@ -3,7 +3,7 @@ package com.afs.parkinglot;
 import java.util.List;
 
 public class StandardParkingBoy {
-    private ParkingLot parkingLot;
+
     private List<ParkingLot> parkingLots;
 
     public StandardParkingBoy(ParkingLot parkingLot) {
@@ -13,6 +13,7 @@ public class StandardParkingBoy {
     public StandardParkingBoy(List<ParkingLot> parkingLots) {
         this.parkingLots = parkingLots;
     }
+
     public Ticket park(Car car) {
         return parkingLots.stream()
                 .map(parkingLot -> parkingLot.park(car))

@@ -23,7 +23,7 @@ public class StandardParkingBoyTest {
         ParkingLot parkingLot = new ParkingLot();
         StandardParkingBoy standardParkingBoy = new StandardParkingBoy(parkingLot);
         Car car = new Car("1");
-        
+
         Ticket ticketResult = standardParkingBoy.park(car);
         assertNotNull(ticketResult);
     }
@@ -132,9 +132,5 @@ public class StandardParkingBoyTest {
         assertNull(ticketResult2);
         assertTrue(outContent.toString().contains("No available position"));
     }
-
-
-
-
 
 }

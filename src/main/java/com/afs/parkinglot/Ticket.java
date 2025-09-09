@@ -12,12 +12,9 @@ public class Ticket {
         this.parkingLot = parkingLot;
     }
 
-
-
     public Integer getPosition() {
         return position;
     }
-
 
     @Override
     public boolean equals(Object obj) {
